@@ -1,0 +1,15 @@
+.card {
+    overflow: hidden;
+    background: rgb(248, 255, 254);
+    color: var(--bg);
+    margin: 10px;
+}
+
+.card.large {
+    border-radius: 5px;
+}
+
+img{
+    width: 100%;
+    margin-bottom: 10px;
+}
