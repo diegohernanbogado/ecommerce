@@ -1,15 +1,12 @@
-.card {
-    overflow: hidden;
-    background: rgb(248, 255, 254);
-    color: var(--bg);
-    margin: 10px;
-}
-
-.card.large {
-    border-radius: 5px;
+.card-style{
+    width: 18rem;
 }
 
 img{
-    width: 100%;
-    margin-bottom: 10px;
+    width: 80%;
+    height: 80%;
+}
+
+.card-img-top {
+    object-fit: contain;
 }

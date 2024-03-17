@@ -1,38 +1,42 @@
 import { useState, useEffect } from "react";
-import { getProducts, getProductsByCategory } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
-
 import { useParams } from "react-router-dom";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../../services/firebase/firebaseConfig";
 
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const { categoryId } = useParams();
 
     useEffect(() => {
-        const asyncFunc = categoryId ? getProductsByCategory : getProducts;
+        setLoading(true);
+
+        const collectionRef = categoryId
+            ? query(collection(db,"Items"),where("category","==",categoryId))
+            : collection(db,"Items");
         
-        asyncFunc(categoryId)
+        getDocs(collectionRef)
             .then(response => {
-                console.log(response);
-                setProducts(response);
+                const productsAdapted = response.docs.map(doc => {
+                    const data = doc.data();
+                    return { id: doc.id, ...data }
+                })
+                setProducts(productsAdapted)
             })
             .catch(error => {
                 console.error(error)
             })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [categoryId])
 
     return (
-        <div>
-            <section className="hero is-primary">
-                <div className="hero-body">
-                    <h1 className="title">{greeting}</h1>
-                </div>            
-            </section>
-            <div className="section">
+            <div className="container text-center">                
                 <ItemList products={products} />
             </div>
-        </div>
     )
 }
 

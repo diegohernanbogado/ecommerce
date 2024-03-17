@@ -1,37 +1,33 @@
-import './Item.css';
+import "./Item.css";
 import { Link } from "react-router-dom";
 
 const Item = ({id, name, img, price, stock}) =>{
     return (
-                <div className='column is-2'>
-                    <div className="card large">
-                        <div className="card-header">
-                            <h2>
-                                {name}
-                            </h2>
-                        </div>
-                        <div className="card-image">
-                            <figure className="image is-16by9">
-                                <img src={img} alt={name} />
-                            </figure>       
-                        </div>
-                        <div className="card-content">
-                            <div className="content">
-                                <p>
-                                    Precio: ${price}
-                                </p>
-                                <p>
-                                    Stock disponible: {stock}
-                                </p>
+                <div className="col-sm">
+                    <div className="card card-style h-100 text-bg-light border-success">
+                        <div className="card-body">
+                            <div className="card-title">                            
+                                <h2>{name}</h2>
                             </div>
                         </div>
-                        <div className="card-footer">
-                            <Link to={`/item/${id}`}>
-                                <button className='button is-primary'>Ver detalle</button>
-                            </Link>                    
+                        <div className="card-img-top">
+                            <img src={img} alt={name} />
                         </div>
+                        <div className="card-body">
+                            <p className="card-text">
+                                Precio: ${price}
+                            </p>
+                            <p className="card-text">
+                                Stock disponible: {stock}
+                            </p>                           
+                        </div>
+                        <div class="card-footer">
+                            <Link to={`/item/${id}`}>
+                                <button className="btn btn-success">Ver detalle</button>
+                            </Link>      
+                        </div>         
                     </div>
-                </div>
+                </div>             
     )
 }
 

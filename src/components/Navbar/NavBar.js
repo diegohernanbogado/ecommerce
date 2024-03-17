@@ -4,24 +4,28 @@ import titulo from "./assets/titulo.jpg";
 
 const NavBar = () => {
     return (
-        <nav className="navbar">
-            <div className="container">
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
                 <div className="navbar-brand">
-                    <NavLink to={`/`} className="navbar-item">
+                    <NavLink to={`/`}>
                         <img src={titulo} alt="titulo" />
                     </NavLink>
                 </div>
-                <div id="navbarMenu" className="navbar-menu">
-                    <div className="navbar-start">
-                        <NavLink to={`/category/belleza`} className="navbar-link">Belleza</NavLink>
-                        <NavLink to={`/category/bebes`} className="navbar-link">Bebes</NavLink>
-                        <NavLink to={`/category/saludyfarmacia`} className="navbar-link">Salud y Farmacia</NavLink>
-                    </div>
-                    <div className="navbar-end">
-                        <div className="navbar-item">
-                            <CardWidget className="navbar-link" />
-                        </div>
-                    </div>
+                <div id="navbarMenu" className="collapse navbar-collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <NavLink to={`/category/belleza`} className="nav-link">Belleza</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to={`/category/bebes`} className="nav-link">Bebes</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to={`/category/saludyfarmacia`} className="nav-link">Salud y Farmacia</NavLink>
+                        </li>
+                    </ul>                   
+                    <div className="d-flex">
+                        <CardWidget className="navbar-link" />
+                    </div>                    
                 </div>
             </div>
         </nav>
